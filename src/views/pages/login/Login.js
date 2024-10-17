@@ -49,7 +49,7 @@ const Login = () => {
       const token = data.token;
       if (token) {
         localStorage.setItem("authToken", token);
-        window.alert("login succesful");
+
         navigate("/dashboard");
       }
     } else {
