@@ -114,7 +114,7 @@ const AddTask = () => {
         taskName: taskName,
         type: activityType,
         yearId: Number(selectedYearId),
-        month: capitalizeMonth(selectedMonth),
+        month: selectedMonth,
         dueDate: startDate,
         activityId: Number(activityId),
       }),
