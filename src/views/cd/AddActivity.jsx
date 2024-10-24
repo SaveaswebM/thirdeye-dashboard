@@ -145,6 +145,7 @@ const AddActivity = () => {
             <CFormSelect
               aria-label="select Activity Type"
               options={[
+                'select activity type',
                 { label: 'Monthly', value: 'Monthly' },
                 { label: 'Quarterly', value: 'Quarterly' },
                 { label: 'Yearly', value: 'Yearly' },
@@ -265,6 +266,7 @@ const AddActivity = () => {
                   <CFormSelect
                     aria-label="select Activity Type"
                     options={[
+                      'select Activity Type',
                       { label: 'Monthly', value: 'Monthly' },
                       { label: 'Quarterly', value: 'Quarterly' },
                       { label: 'Yearly', value: 'Yearly' },

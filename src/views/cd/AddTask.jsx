@@ -59,6 +59,29 @@ const AddTask = () => {
   const [specificMonth, setSpecificMonth] = useState('')
 
   const [updateTaskName, setUpdateTaskName] = useState(specificTaskName)
+  const [sortedTasks, setSortedTasks] = useState(tasks)
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' })
+
+  const sortBy = (key) => {
+    let direction = 'ascending'
+    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
+      direction = 'descending'
+    }
+
+    const sortedData = [...sortedTasks].sort((a, b) => {
+      if (a[key] < b[key]) {
+        return direction === 'ascending' ? -1 : 1
+      }
+      if (a[key] > b[key]) {
+        return direction === 'ascending' ? 1 : -1
+      }
+      return 0
+    })
+
+    setSortedTasks(sortedData)
+    setSortConfig({ key, direction })
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('authToken')
     if (!token) {
@@ -236,6 +259,9 @@ const AddTask = () => {
               }}
               required
             >
+              <option value="" disabled selected>
+                select activity
+              </option>
               {activities.map((activity) => (
                 <option
                   key={activity.id}
@@ -261,6 +287,9 @@ const AddTask = () => {
               }}
               required
             >
+              <option value="" disabled selected>
+                select activity
+              </option>
               {years.map((year) => (
                 <option key={year.id} value={year.value} data-id={year.id}>
                   {year.label}
@@ -273,6 +302,7 @@ const AddTask = () => {
             <CFormSelect
               aria-label="select Month"
               options={[
+                'Select Month',
                 { label: 'January', value: 'January' },
                 { label: 'February', value: 'February' },
                 { label: 'March', value: 'March' },
@@ -445,6 +475,9 @@ const AddTask = () => {
                       }}
                       required
                     >
+                      <option value="" disabled selected>
+                        Select activity
+                      </option>
                       {activities.map((activity) => (
                         <option
                           key={activity.id}
@@ -471,6 +504,9 @@ const AddTask = () => {
                     }}
                     required
                   >
+                    <option value="" disabled selected>
+                      Select year
+                    </option>
                     {years.map((year) => (
                       <option key={year.id} value={year.value} data-id={year.id}>
                         {year.label}
@@ -484,6 +520,7 @@ const AddTask = () => {
                     aria-label="select Month"
                     value={specificMonth}
                     options={[
+                      'Select Month',
                       { label: 'January', value: 'January' },
                       { label: 'February', value: 'February' },
                       { label: 'March', value: 'March' },
